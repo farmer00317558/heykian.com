@@ -1,0 +1,63 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - heading "年轻人的第一个 智能体团队。" [level=1] [ref=e7]:
+      - generic [ref=e8]: 年轻人的第一个
+      - generic [ref=e9]: 智能体团队。
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]: DOWNLOAD
+        - heading "下载 Kian" [level=2] [ref=e17]
+        - paragraph [ref=e18]:
+          - text: 当前版本 v0.0.10
+          - text: 更新于 2026年3月8日
+      - generic [ref=e20]:
+        - link "推荐 macOS Apple Silicon 适用于 M1 / M2 / M3 / M4 芯片 ZIP 194.4 MB 下载" [ref=e21] [cursor=pointer]:
+          - /url: https://static.sandcdn.com/kian-releases/Kian-0.0.10-arm64-mac.zip
+          - generic [ref=e22]:
+            - img [ref=e24]
+            - generic [ref=e26]: 推荐
+          - generic [ref=e27]:
+            - generic [ref=e28]: macOS
+            - heading "Apple Silicon" [level=3] [ref=e29]
+            - paragraph [ref=e30]: 适用于 M1 / M2 / M3 / M4 芯片
+          - generic [ref=e31]:
+            - generic [ref=e32]:
+              - generic [ref=e33]: ZIP
+              - generic [ref=e34]: 194.4 MB
+            - generic [ref=e35]:
+              - img [ref=e36]
+              - text: 下载
+              - img [ref=e38]
+        - link "macOS Intel 适用于 Intel 处理器 Mac ZIP 200.4 MB 下载" [ref=e40] [cursor=pointer]:
+          - /url: https://static.sandcdn.com/kian-releases/Kian-0.0.10-mac.zip
+          - img [ref=e43]
+          - generic [ref=e45]:
+            - generic [ref=e46]: macOS
+            - heading "Intel" [level=3] [ref=e47]
+            - paragraph [ref=e48]: 适用于 Intel 处理器 Mac
+          - generic [ref=e49]:
+            - generic [ref=e50]:
+              - generic [ref=e51]: ZIP
+              - generic [ref=e52]: 200.4 MB
+            - generic [ref=e53]:
+              - img [ref=e54]
+              - text: 下载
+              - img [ref=e56]
+        - link "Windows Setup 适用于 Windows 10 / 11 EXE 154.7 MB 下载" [ref=e58] [cursor=pointer]:
+          - /url: https://static.sandcdn.com/kian-releases/Kian%20Setup%200.0.10.exe
+          - img [ref=e61]
+          - generic [ref=e63]:
+            - generic [ref=e64]: Windows
+            - heading "Setup" [level=3] [ref=e65]
+            - paragraph [ref=e66]: 适用于 Windows 10 / 11
+          - generic [ref=e67]:
+            - generic [ref=e68]:
+              - generic [ref=e69]: EXE
+              - generic [ref=e70]: 154.7 MB
+            - generic [ref=e71]:
+              - img [ref=e72]
+              - text: 下载
+              - img [ref=e74]
+  - button "Open Next.js Dev Tools" [ref=e81] [cursor=pointer]:
+    - img [ref=e82]
+  - alert [ref=e85]
