@@ -10,11 +10,22 @@ type Particle = {
   size: number;
 };
 
-const PARTICLE_COUNT = 72;
+const BASE_DENSITY = 0.00006;
+const MAX_PARTICLES = 60;
 const LINE_DISTANCE = 140;
+const LINE_DISTANCE_SQ = LINE_DISTANCE * LINE_DISTANCE;
+const POINTER_DISTANCE = 180;
+const POINTER_DISTANCE_SQ = POINTER_DISTANCE * POINTER_DISTANCE;
+const FRAME_INTERVAL = 1000 / 30; // ~30 FPS
 
 function createParticles(width: number, height: number): Particle[] {
-  return Array.from({ length: PARTICLE_COUNT }, () => ({
+  const area = width * height;
+  const targetCount = Math.min(
+    MAX_PARTICLES,
+    Math.max(20, Math.floor(area * BASE_DENSITY)),
+  );
+
+  return Array.from({ length: targetCount }, () => ({
     x: Math.random() * width,
     y: Math.random() * height,
     vx: (Math.random() - 0.5) * 0.28,
@@ -41,6 +52,7 @@ export default function ParticleField() {
     }
 
     let animationFrame = 0;
+    let lastTime = 0;
     let particles: Particle[] = [];
     let pointer = { x: Number.NaN, y: Number.NaN };
     let width = 0;
@@ -57,7 +69,13 @@ export default function ParticleField() {
       particles = createParticles(width, height);
     };
 
-    const draw = () => {
+    const draw = (timestamp: number) => {
+      if (timestamp - lastTime < FRAME_INTERVAL) {
+        animationFrame = window.requestAnimationFrame(draw);
+        return;
+      }
+
+      lastTime = timestamp;
       context.clearRect(0, 0, width, height);
 
       for (const particle of particles) {
@@ -85,12 +103,13 @@ export default function ParticleField() {
           const target = particles[inner];
           const dx = source.x - target.x;
           const dy = source.y - target.y;
-          const distance = Math.hypot(dx, dy);
+          const distanceSq = dx * dx + dy * dy;
 
-          if (distance >= LINE_DISTANCE) {
+          if (distanceSq >= LINE_DISTANCE_SQ) {
             continue;
           }
 
+          const distance = Math.sqrt(distanceSq);
           const opacity = (1 - distance / LINE_DISTANCE) * 0.22;
           context.beginPath();
           context.strokeStyle = `rgba(109, 156, 255, ${opacity})`;
@@ -103,11 +122,12 @@ export default function ParticleField() {
         if (!Number.isNaN(pointer.x) && !Number.isNaN(pointer.y)) {
           const dx = source.x - pointer.x;
           const dy = source.y - pointer.y;
-          const distance = Math.hypot(dx, dy);
+          const distanceSq = dx * dx + dy * dy;
 
-          if (distance < 180) {
+          if (distanceSq < POINTER_DISTANCE_SQ) {
+            const distance = Math.sqrt(distanceSq);
             context.beginPath();
-            context.strokeStyle = `rgba(255, 255, 255, ${(1 - distance / 180) * 0.16})`;
+            context.strokeStyle = `rgba(255, 255, 255, ${(1 - distance / POINTER_DISTANCE) * 0.16})`;
             context.moveTo(source.x, source.y);
             context.lineTo(pointer.x, pointer.y);
             context.stroke();
@@ -130,18 +150,28 @@ export default function ParticleField() {
       pointer = { x: Number.NaN, y: Number.NaN };
     };
 
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        window.cancelAnimationFrame(animationFrame);
+      } else {
+        animationFrame = window.requestAnimationFrame(draw);
+      }
+    };
+
     resize();
-    draw();
+    animationFrame = window.requestAnimationFrame(draw);
 
     window.addEventListener("resize", resize);
     window.addEventListener("pointermove", handlePointerMove);
     window.addEventListener("pointerleave", handlePointerLeave);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       window.cancelAnimationFrame(animationFrame);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerleave", handlePointerLeave);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
 
