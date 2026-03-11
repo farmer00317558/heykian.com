@@ -338,6 +338,7 @@ a:focus-visible {
 }
 
 .hero-title span:last-child {
+  padding-inline: 0.12em;
   background: linear-gradient(135deg, #f7f9ff 0%, #dce5ff 48%, #bfd5ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
