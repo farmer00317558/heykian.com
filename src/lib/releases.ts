@@ -1,7 +1,9 @@
 const RELEASE_BASE_URL = "https://static.sandcdn.com/kian-releases/";
 const MAC_MANIFEST_URL = `${RELEASE_BASE_URL}latest-mac.yml`;
 const WINDOWS_MANIFEST_URL = `${RELEASE_BASE_URL}latest.yml`;
-const LATEST_VERSION_URL = `${RELEASE_BASE_URL}latest.txt`;
+// 使用非 CDN 源站地址获取最新版本号，避免缓存
+const LATEST_VERSION_URL =
+  "https://sandai-fe-builds.oss-cn-hongkong.aliyuncs.com/kian-releases/latest.txt";
 
 export type DownloadAsset = {
   id: "mac-apple-silicon" | "mac-intel" | "windows";
@@ -72,7 +74,8 @@ const FALLBACK_DOWNLOADS: LatestDownloads = {
 async function fetchLatestVersion(): Promise<string | null> {
   try {
     const response = await fetch(LATEST_VERSION_URL, {
-      next: { revalidate: 1800 },
+      // 禁用缓存，确保每次从源站获取最新版本号
+      cache: "no-store",
     });
 
     if (!response.ok) {
