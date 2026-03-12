@@ -99,18 +99,6 @@ a:focus-visible {
   mask-image: radial-gradient(circle at center, black 48%, transparent 94%);
 }
 
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 112px 112px;
-  mask-image: linear-gradient(180deg, transparent 0%, black 20%, black 74%, transparent 100%);
-}
-
-.hero-radial,
 .download-spotlight {
   position: absolute;
   border-radius: 9999px;
@@ -118,36 +106,8 @@ a:focus-visible {
   pointer-events: none;
 }
 
-.hero-radial-a {
-  top: 2%;
-  left: 7%;
-  width: 24rem;
-  height: 24rem;
-  background: rgba(117, 162, 255, 0.22);
-  animation: drift-a 18s ease-in-out infinite;
-}
-
-.hero-radial-b {
-  right: 8%;
-  top: 16%;
-  width: 20rem;
-  height: 20rem;
-  background: rgba(142, 243, 213, 0.14);
-  animation: drift-b 24s ease-in-out infinite;
-}
-
-.hero-radial-c {
-  bottom: 2%;
-  left: 50%;
-  width: 32rem;
-  height: 14rem;
-  transform: translateX(-50%);
-  background: rgba(89, 96, 255, 0.18);
-  filter: blur(150px);
-}
-
 .hero-shell {
-  padding-block: clamp(5.5rem, 12vw, 9rem);
+  padding-block: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .hero-heading {
@@ -189,7 +149,15 @@ a:focus-visible {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(2.8rem, 5.6vw, 4.4rem);
+  gap: clamp(1.6rem, 3.2vw, 2.6rem);
+}
+
+.hero-latest-version {
+  margin: 0;
+  font-size: 0.75rem;
+  color: rgba(245, 247, 255, 0.28);
+  letter-spacing: 0.05em;
+  text-align: center;
 }
 
 .hero-feature-block {
@@ -618,23 +586,6 @@ a:focus-visible {
   letter-spacing: 0.02em;
 }
 
-@keyframes drift-a {
-  0%, 100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(1.75rem, 2.5rem, 0);
-  }
-}
-
-@keyframes drift-b {
-  0%, 100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(-2rem, -1.25rem, 0);
-  }
-}
 
 @media (min-width: 768px) {
   .hero-download-row {

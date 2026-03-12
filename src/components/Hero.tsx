@@ -21,13 +21,9 @@ export default function Hero({ downloads }: HeroProps) {
   return (
     <section
       id="top"
-      className="hero-section relative flex min-h-[100svh] items-center justify-center overflow-hidden px-5 py-10 sm:px-6 lg:px-8"
+      className="hero-section relative flex h-svh items-center justify-center overflow-hidden px-5 py-10 sm:px-6 lg:px-8"
     >
       <ParticleField />
-      <div className="hero-grid" />
-      <div className="hero-radial hero-radial-a" />
-      <div className="hero-radial hero-radial-b" />
-      <div className="hero-radial hero-radial-c" />
 
       <div className="hero-shell relative z-10 mx-auto flex w-full max-w-6xl items-center justify-center">
         <div className="hero-stack w-full">
@@ -84,6 +80,9 @@ export default function Hero({ downloads }: HeroProps) {
               );
             })}
           </div>
+          <p className="hero-latest-version">
+            最新版本 v{downloads.version}
+          </p>
         </div>
       </div>
     </section>
