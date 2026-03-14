@@ -30,7 +30,7 @@ export default function Hero({ downloads }: HeroProps) {
           <div className="hero-heading">
             <div className="hero-brand" data-text="Kian">Kian</div>
             <h1 className="hero-title">
-              <span className="block">年轻人的第一个智能体团队</span>
+              <span className="block">你的第一个智能体团队</span>
             </h1>
           </div>
           <div className="hero-feature-block">

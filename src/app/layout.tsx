@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DynaPuff, Manrope, Syne } from "next/font/google";
+import { Pacifico, Manrope, Syne } from "next/font/google";
 import "./globals.css";
 import AntdProvider from "@/components/AntdProvider";
 
@@ -17,15 +17,15 @@ const syne = Syne({
   variable: "--font-syne",
 });
 
-const dynaPuff = DynaPuff({
+const pacifico = Pacifico({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400"],
   display: "swap",
-  variable: "--font-dynapuff",
+  variable: "--font-pacifico",
 });
 
-const title = "Kian | 年轻人的第一个智能体团队";
-const description = "下载 Kian，进入年轻人的第一个智能体团队。年轻人的第一个智能体团队，支持多智能体协作、本地运行、定时任务、长程任务和多渠道通信。";
+const title = "Kian | 你的第一个智能体团队";
+const description = "下载 Kian，进入你的第一个智能体团队。你的第一个智能体团队，支持多智能体协作、本地运行、定时任务、长程任务和多渠道通信。";
 
 export const metadata: Metadata = {
   title,
@@ -61,7 +61,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body className={`${manrope.variable} ${syne.variable} ${dynaPuff.variable} antialiased`}>
+      <body className={`${manrope.variable} ${syne.variable} ${pacifico.variable} antialiased`}>
         <AntdProvider>{children}</AntdProvider>
       </body>
     </html>

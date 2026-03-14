@@ -12,7 +12,7 @@
   --color-accent-soft: #8ef3d5;
   --font-sans: var(--font-manrope), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --font-display: var(--font-syne), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --font-brand: var(--font-dynapuff), "Trebuchet MS", "Comic Sans MS", cursive;
+  --font-brand: var(--font-pacifico), "Trebuchet MS", "Comic Sans MS", cursive;
 }
 
 *, ::before, ::after {
