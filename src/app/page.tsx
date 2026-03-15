@@ -1,12 +1,11 @@
-import Hero from "@/components/Hero";
+import HomePage from "@/components/Home";
+import { createHomeMetadata, DEFAULT_LOCALE } from "@/lib/i18n";
 import { getLatestDownloads } from "@/lib/releases";
+
+export const metadata = createHomeMetadata(DEFAULT_LOCALE);
 
 export default async function Home() {
   const downloads = await getLatestDownloads();
 
-  return (
-    <main className="relative h-svh overflow-clip">
-      <Hero downloads={downloads} />
-    </main>
-  );
+  return <HomePage locale={DEFAULT_LOCALE} downloads={downloads} />;
 }

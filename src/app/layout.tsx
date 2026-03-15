@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Pacifico, Manrope, Syne } from "next/font/google";
+import {
+  getHtmlLang,
+  resolveRequestLocale,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/i18n";
 import "./globals.css";
 import AntdProvider from "@/components/AntdProvider";
 
@@ -24,43 +31,42 @@ const pacifico = Pacifico({
   variable: "--font-pacifico",
 });
 
-const title = "Kian | 你的第一个智能体团队";
-const description = "下载 Kian，进入你的第一个智能体团队。你的第一个智能体团队，支持多智能体协作、本地运行、定时任务、长程任务和多渠道通信。";
-
 export const metadata: Metadata = {
-  title,
-  description,
-  metadataBase: new URL("https://heykian.com"),
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
+  referrer: "origin-when-cross-origin",
+  manifest: "/manifest.webmanifest",
+  formatDetection: {
+    address: false,
+    email: false,
+    telephone: false,
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: SITE_NAME,
+  },
   icons: {
+    shortcut: ["/favicon.ico"],
     icon: [
       { url: "/favicon.png", type: "image/png", sizes: "256x256" },
     ],
-  },
-  openGraph: {
-    title,
-    description,
-    url: "/",
-    siteName: "Kian",
-    type: "website",
-    locale: "zh_CN",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-  },
-  alternates: {
-    canonical: "/",
+    apple: [
+      { url: "/kian-logo.png", type: "image/png", sizes: "1024x1024" },
+    ],
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const requestHeaders = await headers();
+  const locale = resolveRequestLocale(requestHeaders.get("x-kian-locale"));
+
   return (
-    <html lang="zh-CN">
+    <html lang={getHtmlLang(locale)}>
       <body className={`${manrope.variable} ${syne.variable} ${pacifico.variable} antialiased`}>
         <AntdProvider>{children}</AntdProvider>
       </body>

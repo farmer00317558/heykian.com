@@ -134,15 +134,22 @@ a:focus-visible {
 }
 
 .hero-title {
-  max-width: none;
+  max-width: min(16ch, 100%);
   font-family: var(--font-display);
   font-size: clamp(2.9rem, 6.5vw, 6.15rem);
   font-weight: 800;
-  line-height: 0.96;
+  line-height: 1.2;
   letter-spacing: -0.085em;
-  white-space: nowrap;
+  white-space: normal;
+  text-wrap: balance;
   text-align: center;
   color: #f5f7ff;
+}
+
+.hero-title-english {
+  font-family: var(--font-sans);
+  letter-spacing: -0.04em;
+  font-weight: 700;
 }
 
 .hero-stack {
@@ -625,6 +632,7 @@ a:focus-visible {
   .hero-title {
     font-size: clamp(1.52rem, 6.55vw, 1.95rem);
     letter-spacing: -0.05em;
+    max-width: 12ch;
   }
 
   .hero-stack {

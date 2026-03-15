@@ -1,23 +1,18 @@
 import type { LatestDownloads } from "@/lib/releases";
+import { getHomeCopy, type SupportedLocale } from "@/lib/i18n";
 import { AppleIcon, DownloadIcon, WindowsIcon } from "./Icons";
+import LanguageSwitcher from "./LanguageSwitcher";
 import ParticleField from "./ParticleField";
 
-const featureTags = [
-  "多智能体协作",
-  "本地运行",
-  "定时任务",
-  "长程任务",
-  "多渠道通信",
-  "SKILL / MCP 支持",
-];
-
-const nativeSupports = ["文档管理", "多媒体创作", "应用开发"];
-
 type HeroProps = {
+  locale: SupportedLocale;
   downloads: LatestDownloads;
 };
 
-export default function Hero({ downloads }: HeroProps) {
+export default function Hero({ locale, downloads }: HeroProps) {
+  const copy = getHomeCopy(locale);
+  const isEnglish = locale === "en";
+
   return (
     <section
       id="top"
@@ -29,21 +24,27 @@ export default function Hero({ downloads }: HeroProps) {
         <div className="hero-stack w-full">
           <div className="hero-heading">
             <div className="hero-brand" data-text="Kian">Kian</div>
-            <h1 className="hero-title">
-              <span className="block">你的第一个智能体团队</span>
+            <h1 className={`hero-title ${isEnglish ? "hero-title-english" : ""}`}>
+              <span className="block">{copy.hero.title}</span>
             </h1>
           </div>
           <div className="hero-feature-block">
-            <div className="hero-tag-row" aria-label="Feature tags">
-              {featureTags.map((tag) => (
+            <div
+              className="hero-tag-row"
+              aria-label={copy.hero.featureTagsAriaLabel}
+            >
+              {copy.hero.featureTags.map((tag) => (
                 <span key={tag} className="hero-tag">
                   {tag}
                 </span>
               ))}
             </div>
-            <div className="hero-support-row" aria-label="Native supports">
+            <div
+              className="hero-support-row"
+              aria-label={copy.hero.nativeSupportsAriaLabel}
+            >
               <div className="hero-support-tags">
-                {nativeSupports.map((item) => (
+                {copy.hero.nativeSupports.map((item) => (
                   <span key={item} className="hero-support-tag">
                     {item}
                   </span>
@@ -51,7 +52,10 @@ export default function Hero({ downloads }: HeroProps) {
               </div>
             </div>
           </div>
-          <div className="hero-download-row" aria-label="下载 Kian">
+          <div
+            className="hero-download-row"
+            aria-label={copy.hero.downloadsAriaLabel}
+          >
             {downloads.assets.map((asset) => {
               const icon =
                 asset.platform === "Windows" ? (
@@ -81,8 +85,11 @@ export default function Hero({ downloads }: HeroProps) {
             })}
           </div>
           <p className="hero-latest-version">
-            最新版本 v{downloads.version}
+            {copy.hero.latestVersionLabel} v{downloads.version}
           </p>
+          <div className="flex w-full max-w-[68rem] justify-center pt-1">
+            <LanguageSwitcher currentLocale={locale} />
+          </div>
         </div>
       </div>
     </section>
