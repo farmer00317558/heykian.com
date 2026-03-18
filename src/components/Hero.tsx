@@ -1,6 +1,6 @@
 import type { LatestDownloads } from "@/lib/releases";
 import { getHomeCopy, type SupportedLocale } from "@/lib/i18n";
-import { AppleIcon, DownloadIcon, WindowsIcon } from "./Icons";
+import { AppleIcon, DownloadIcon, GitHubIcon, WindowsIcon } from "./Icons";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ParticleField from "./ParticleField";
 
@@ -24,6 +24,15 @@ export default function Hero({ locale, downloads }: HeroProps) {
         <div className="hero-stack w-full">
           <div className="hero-heading">
             <div className="hero-brand" data-text="Kian">Kian</div>
+            <a
+              href="https://github.com/SandAI-org/kian"
+              target="_blank"
+              rel="noreferrer"
+              className="hero-github-link"
+            >
+              <GitHubIcon className="h-4 w-4" />
+              <span>Star on GitHub</span>
+            </a>
             <h1 className={`hero-title ${isEnglish ? "hero-title-english" : ""}`}>
               <span className="block">{copy.hero.title}</span>
             </h1>

@@ -54,16 +54,6 @@ const FALLBACK_DOWNLOADS: LatestDownloads = {
       extension: "DMG",
       size: null,
     },
-    {
-      id: "windows",
-      platform: "Windows",
-      label: "Setup",
-      description: "适用于 Windows 10 / 11",
-      fileName: "0.0.13/Kian Setup 0.0.13.exe",
-      href: buildAssetUrl("0.0.13/Kian Setup 0.0.13.exe"),
-      extension: "EXE",
-      size: null,
-    },
   ],
   manifestUrls: {
     mac: MAC_MANIFEST_URL,
@@ -108,6 +98,7 @@ export async function getLatestDownloads(): Promise<LatestDownloads> {
     return FALLBACK_DOWNLOADS;
   }
 
+  // Temporarily publish only macOS installers on public pages.
   const assets: DownloadAsset[] = [
     toDownloadAsset({
       id: "mac-apple-silicon",
@@ -123,14 +114,6 @@ export async function getLatestDownloads(): Promise<LatestDownloads> {
       label: "Intel",
       description: "适用于 Intel 处理器 Mac",
       fileName: `${version}/Kian-${version}.dmg`,
-      size: null,
-    }),
-    toDownloadAsset({
-      id: "windows",
-      platform: "Windows",
-      label: "Setup",
-      description: "适用于 Windows 10 / 11",
-      fileName: `${version}/Kian Setup ${version}.exe`,
       size: null,
     }),
   ];

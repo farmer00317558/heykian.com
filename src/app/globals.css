@@ -134,7 +134,6 @@ a:focus-visible {
 }
 
 .hero-title {
-  max-width: min(16ch, 100%);
   font-family: var(--font-display);
   font-size: clamp(2.9rem, 6.5vw, 6.15rem);
   font-weight: 800;
@@ -215,17 +214,21 @@ a:focus-visible {
 }
 
 .hero-download-row {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   width: min(100%, 68rem);
+  margin-inline: auto;
   gap: 1rem;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .hero-download-button {
   display: flex;
   align-items: center;
   gap: 0.9rem;
-  width: 100%;
+  flex: 1 1 19rem;
+  width: min(100%, 22rem);
+  max-width: 22rem;
   min-height: 5.2rem;
   padding: 1rem 1.1rem 1rem 1.15rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -310,6 +313,41 @@ a:focus-visible {
   letter-spacing: -0.045em;
   color: #f7f9ff;
   text-shadow: 0 10px 34px rgba(117, 162, 255, 0.18);
+}
+
+.hero-github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.45rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 9999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.065) 0%, rgba(255, 255, 255, 0.02) 100%);
+  color: rgba(248, 251, 255, 0.88);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.hero-github-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(142, 243, 213, 0.22);
+  color: #f8fbff;
+  box-shadow:
+    0 20px 34px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .hero-title span:last-child {
@@ -632,7 +670,6 @@ a:focus-visible {
   .hero-title {
     font-size: clamp(1.52rem, 6.55vw, 1.95rem);
     letter-spacing: -0.05em;
-    max-width: 12ch;
   }
 
   .hero-stack {
@@ -645,6 +682,12 @@ a:focus-visible {
 
   .hero-heading {
     gap: 0.9rem;
+  }
+
+  .hero-github-link {
+    min-height: 2.15rem;
+    padding: 0.48rem 0.82rem;
+    font-size: 0.72rem;
   }
 
   .hero-feature-block {
@@ -672,6 +715,8 @@ a:focus-visible {
   }
 
   .hero-download-button {
+    flex-basis: 100%;
+    max-width: none;
     min-height: 4.4rem;
     padding: 0.82rem 0.9rem;
     border-radius: 1.2rem;
