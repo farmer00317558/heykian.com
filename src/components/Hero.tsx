@@ -31,7 +31,7 @@ export default function Hero({ locale, downloads }: HeroProps) {
               className="hero-github-link"
             >
               <GitHubIcon className="h-4 w-4" />
-              <span>Star on GitHub</span>
+              <span>{copy.hero.githubStarLabel}</span>
             </a>
             <h1 className={`hero-title ${isEnglish ? "hero-title-english" : ""}`}>
               <span className="block">{copy.hero.title}</span>
@@ -66,6 +66,8 @@ export default function Hero({ locale, downloads }: HeroProps) {
             aria-label={copy.hero.downloadsAriaLabel}
           >
             {downloads.assets.map((asset) => {
+              const label =
+                asset.id === "windows" ? copy.hero.windowsReleaseLabel : asset.label;
               const icon =
                 asset.platform === "Windows" ? (
                   <WindowsIcon className="h-5 w-5" />
@@ -84,7 +86,7 @@ export default function Hero({ locale, downloads }: HeroProps) {
                   <span className="hero-download-icon">{icon}</span>
                   <span className="hero-download-copy">
                     <span className="hero-download-platform">{asset.platform}</span>
-                    <span className="hero-download-label">{asset.label}</span>
+                    <span className="hero-download-label">{label}</span>
                   </span>
                   <span className="hero-download-action">
                     <DownloadIcon className="h-4 w-4" />

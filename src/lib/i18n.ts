@@ -30,8 +30,10 @@ type HomeCopy = {
     nativeSupports: string[];
     featureTagsAriaLabel: string;
     nativeSupportsAriaLabel: string;
+    githubStarLabel: string;
     downloadsAriaLabel: string;
     latestVersionLabel: string;
+    windowsReleaseLabel: string;
   };
 };
 
@@ -77,8 +79,10 @@ const HOME_COPY: Record<SupportedLocale, HomeCopy> = {
       nativeSupports: ["文档管理", "多媒体创作", "应用开发"],
       featureTagsAriaLabel: "功能标签",
       nativeSupportsAriaLabel: "原生支持场景",
+      githubStarLabel: "在 GitHub 上 Star",
       downloadsAriaLabel: "下载 Kian",
       latestVersionLabel: "最新版本",
+      windowsReleaseLabel: "最新 Release",
     },
   },
   en: {
@@ -99,8 +103,10 @@ const HOME_COPY: Record<SupportedLocale, HomeCopy> = {
       nativeSupports: ["Document management", "Media creation", "App development"],
       featureTagsAriaLabel: "Feature tags",
       nativeSupportsAriaLabel: "Native support areas",
+      githubStarLabel: "Star on GitHub",
       downloadsAriaLabel: "Download Kian",
       latestVersionLabel: "Latest version",
+      windowsReleaseLabel: "Latest Release",
     },
   },
   ko: {
@@ -121,8 +127,10 @@ const HOME_COPY: Record<SupportedLocale, HomeCopy> = {
       nativeSupports: ["문서 관리", "멀티미디어 제작", "앱 개발"],
       featureTagsAriaLabel: "기능 태그",
       nativeSupportsAriaLabel: "기본 지원 영역",
+      githubStarLabel: "GitHub에서 Star",
       downloadsAriaLabel: "Kian 다운로드",
       latestVersionLabel: "최신 버전",
+      windowsReleaseLabel: "최신 릴리스",
     },
   },
   ja: {
@@ -143,8 +151,10 @@ const HOME_COPY: Record<SupportedLocale, HomeCopy> = {
       nativeSupports: ["ドキュメント管理", "マルチメディア制作", "アプリ開発"],
       featureTagsAriaLabel: "機能タグ",
       nativeSupportsAriaLabel: "標準サポート領域",
+      githubStarLabel: "GitHub で Star",
       downloadsAriaLabel: "Kian をダウンロード",
       latestVersionLabel: "最新バージョン",
+      windowsReleaseLabel: "最新リリース",
     },
   },
 };

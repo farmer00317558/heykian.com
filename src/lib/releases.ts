@@ -1,6 +1,8 @@
 const RELEASE_BASE_URL = "https://static.sandcdn.com/kian-releases/";
 const MAC_MANIFEST_URL = `${RELEASE_BASE_URL}latest-mac.yml`;
 const WINDOWS_MANIFEST_URL = `${RELEASE_BASE_URL}latest.yml`;
+const WINDOWS_RELEASES_LATEST_URL =
+  "https://github.com/SandAI-org/kian/releases/latest";
 // 使用非 CDN 源站地址获取最新版本号，避免缓存
 const LATEST_VERSION_URL =
   "https://sandai-fe-builds.oss-cn-hongkong.aliyuncs.com/kian-releases/latest.txt";
@@ -30,6 +32,19 @@ function buildAssetUrl(fileName: string) {
   return new URL(fileName, RELEASE_BASE_URL).toString();
 }
 
+function buildWindowsReleaseAsset(): DownloadAsset {
+  return {
+    id: "windows",
+    platform: "Windows",
+    label: "Latest Release",
+    description: "前往 GitHub Releases 页面获取最新 Windows 安装包",
+    fileName: "releases/latest",
+    href: WINDOWS_RELEASES_LATEST_URL,
+    extension: "RELEASE",
+    size: null,
+  };
+}
+
 const FALLBACK_DOWNLOADS: LatestDownloads = {
   version: "0.0.13",
   publishedAt: "2026-03-07T18:48:57.313Z",
@@ -54,6 +69,7 @@ const FALLBACK_DOWNLOADS: LatestDownloads = {
       extension: "DMG",
       size: null,
     },
+    buildWindowsReleaseAsset(),
   ],
   manifestUrls: {
     mac: MAC_MANIFEST_URL,
@@ -98,7 +114,6 @@ export async function getLatestDownloads(): Promise<LatestDownloads> {
     return FALLBACK_DOWNLOADS;
   }
 
-  // Temporarily publish only macOS installers on public pages.
   const assets: DownloadAsset[] = [
     toDownloadAsset({
       id: "mac-apple-silicon",
@@ -116,6 +131,7 @@ export async function getLatestDownloads(): Promise<LatestDownloads> {
       fileName: `${version}/Kian-${version}.dmg`,
       size: null,
     }),
+    buildWindowsReleaseAsset(),
   ];
 
   return {
