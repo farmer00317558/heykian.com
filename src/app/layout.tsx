@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { Pacifico, Manrope, Syne } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import {
   getHtmlLang,
   resolveRequestLocale,
@@ -69,6 +70,7 @@ export default async function RootLayout({
     <html lang={getHtmlLang(locale)}>
       <body className={`${manrope.variable} ${syne.variable} ${pacifico.variable} antialiased`}>
         <AntdProvider>{children}</AntdProvider>
+        <Analytics />
       </body>
     </html>
   );
